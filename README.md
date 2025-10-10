@@ -28,17 +28,17 @@ All commands are run through `app.py`.
 
 * **List all VMs:**
     ```bash
-    python app.py list
+    python3 app.py list
     ```
 
 * **Start a VM named `ubuntu24.04`:**
     ```bash
-    python app.py start ubuntu24.04
+    python3 app.py start ubuntu24.04
     ```
 
 * **Stop a VM named `ubuntu24.04`:**
     ```bash
-    python app.py stop ubuntu24.04
+    python3 app.py stop ubuntu24.04
     ```
 
 ## What's Next?

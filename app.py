@@ -7,6 +7,10 @@ if __name__ == "__main__":
 
     # Sub-command for 'list'
     parser_list = subparsers.add_parser("list", help="List all virtual machines.")
+
+    #Sub-command for "get_domain_by_name"
+    parser_get = subparsers.add_parser("get", help="Get details of a virtual machine by name.")
+    parser_get.add_argument("vm_name", type=str, help="Name of  the VM to get details for.")    
     
     # Sub-command for 'start'
     parser_start = subparsers.add_parser("start", help="Start a virtual machine.")

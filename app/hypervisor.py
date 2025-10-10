@@ -96,12 +96,12 @@ def list_vms(conn):
 
 
 
-#conn = connect()
-#domain = get_domain_by_name(conn, "ubuntu24.04")
+conn = connect()
+domain = get_domain_by_name(conn, "ubuntu24.04")
 #start_domain(domain)
 #state, reason = domain.state()
 #print(f"The state of '{domain.name()}' is: {state}")
 #shut_down_domain(domain)
-#disconnect(conn)
+disconnect(conn)
 
         

@@ -18,3 +18,18 @@ def get_vm_by_name(vmname : str):
     vm = hypervisor.get_vm_info(hypervisor_conn, vmname)
     hypervisor.disconnect(hypervisor_conn)
     return vm
+
+@app.put("/vm/{vmname}/start")
+def start_vm(vmname: str):
+    hypervisor_conn = hypervisor.connect()
+    result = hypervisor.start_domain(hypervisor_conn, vmname)
+    hypervisor.disconnect(hypervisor_conn)
+    return {"result": result}   
+
+@app.put("/vm/{vmname}/stop")
+def stop__vm(vmname : str):
+    hypervisor_conn = hypervisor.connect()
+    result = hypervisor.shut_down_domain(hypervisor_conn, vmname)
+    hypervisor.disconnect(hypervisor_conn)
+    return {"result": result}   
+

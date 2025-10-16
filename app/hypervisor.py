@@ -101,9 +101,9 @@ def start_domain(conn, name):
         domain = conn.lookupByName(name)
         if not domain.isActive():
             domain.create() 
-            print(f"Domain '{name}' started successfully.")
+            return(f"Domain '{name}' started successfully.")
         else:
-            print(f"Domain '{name}' is already running.")
+            return(f"Domain '{name}' is already running.")
     except libvirt.libvirtError as e:
         print(f"Error starting domain '{name}': {e}", file=sys.stderr)
 
@@ -113,9 +113,9 @@ def shut_down_domain(conn, name):
         domain = conn.lookupByName(name)
         if domain.isActive():
             domain.destroy() 
-            print(f"Domain '{name}' has been shut down.")
+            return(f"Domain '{name}' has been shut down.")
         else:
-            print(f"Domain '{name}' is not running.")
+            return(f"Domain '{name}' is not running.")
     except libvirt.libvirtError as e:
         print(f"Error shutting down domain '{name}': {e}", file=sys.stderr)
 

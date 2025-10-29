@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 import hypervisor,schemas
 from typing import List
 app = FastAPI()
@@ -16,6 +16,8 @@ def list_vms():
 def get_vm_by_name(vmname : str):
     hypervisor_conn = hypervisor.connect()
     vm = hypervisor.get_vm_info(hypervisor_conn, vmname)
+    if not vm:
+        raise HTTPException(status_code=404, detail="VM Does not exist")
     hypervisor.disconnect(hypervisor_conn)
     return vm
 
@@ -23,13 +25,17 @@ def get_vm_by_name(vmname : str):
 def start_vm(vmname: str):
     hypervisor_conn = hypervisor.connect()
     result = hypervisor.start_domain(hypervisor_conn, vmname)
+    if not result:
+        raise HTTPException(status_code=404, detail="VM Does not exist")
     hypervisor.disconnect(hypervisor_conn)
-    return {"result": result}   
+    return {"result": result} 
 
 @app.put("/vm/{vmname}/stop")
 def stop__vm(vmname : str):
     hypervisor_conn = hypervisor.connect()
     result = hypervisor.shut_down_domain(hypervisor_conn, vmname)
+    if not result:
+        raise HTTPException(status_code=404, detail="VM Does not exist")
     hypervisor.disconnect(hypervisor_conn)
     return {"result": result}   
 
